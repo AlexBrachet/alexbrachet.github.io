@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alex Brachet — Pianist & Composer</title>
+  <meta name="description" content="Alex Brachet — French pianist and composer. Solo piano album Beyond Blue. Jazz, classical, contemporary."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant+SC:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --deep: #0f0f12;
+      --panel: #13131a;
+      --border: rgba(255,255,255,0.07);
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.15);
+      --gold-line: rgba(201,168,76,0.4);
+      --white: #f0ede8;
+      --gray: #8a8880;
+      --light: #c8c4bc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 60px;
+      background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant SC', serif;
+      font-weight: 300;
+      font-size: 15px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cormorant SC', serif;
+      font-weight: 300;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,168,76,0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(20,20,40,0.8) 0%, transparent 60%),
+        linear-gradient(160deg, #0a0a0f 0%, #0f0f1a 40%, #080810 100%);
+    }
+
+    .hero-line {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 55%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--gold-line) 30%, var(--gold-line) 70%, transparent 100%);
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(56px, 8vw, 108px);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--light);
+      letter-spacing: 0.05em;
+      max-width: 440px;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      right: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+
+    .hero-scroll span {
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gray);
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 120px 60px;
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 120px;
+    }
+
+    /* ── ALBUM ── */
+    #album {
+      background: var(--deep);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .album-cover {
+      position: relative;
+    }
+
+    .album-cover img {
+      width: 100%;
+      display: block;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.1);
+    }
+
+    .album-cover::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.2), transparent 50%);
+      pointer-events: none;
+    }
+
+    .album-info {}
+
+    .album-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .album-subtitle {
+      font-family: 'Cormorant SC', serif;
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .album-desc {
+      color: var(--light);
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+      font-style: italic;
+    }
+
+    .listen-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .listen-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .listen-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--light);
+      text-decoration: none;
+      font-size: 15px;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .listen-link::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--gold);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+    }
+
+    .listen-link:hover {
+      border-color: var(--gold-line);
+      color: var(--white);
+      background: var(--gold-dim);
+    }
+
+    .listen-link:hover::before { transform: scaleY(1); }
+
+    .listen-link .track-num {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      color: var(--gold);
+      min-width: 20px;
+    }
+
+    .listen-link .track-composer {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+    }
+
+    .stream-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .stream-btn {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .stream-btn:hover {
+      color: var(--gold);
+      border-color: var(--gold-line);
+    }
+
+    /* ── TRACKLIST ── */
+    #tracklist {
+      background: var(--black);
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .track-item {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 30px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .track-item:nth-child(odd) { border-right: 1px solid var(--border); }
+    .track-item:hover { background: rgba(201,168,76,0.04); }
+
+    .track-n {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      color: var(--gold);
+      min-width: 24px;
+    }
+
+    .track-name {
+      font-size: 16px;
+      font-style: italic;
+      flex: 1;
+    }
+
+    .track-by {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .track-dur {
+      font-family: 'Cormorant SC', serif;
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+    }
+
+    .tracklist-total {
+      text-align: right;
+      margin-top: 24px;
+      font-family: 'Cormorant SC', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+    }
+
+    /* ── BIO ── */
+    #bio {
+      background: var(--panel);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .bio-photo {
+      position: sticky;
+      top: 120px;
+    }
+
+    .bio-photo img {
+      width: 100%;
+      display: block;
+      filter: grayscale(20%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .bio-photo-caption {
+      margin-top: 16px;
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .bio-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+    }
+
+    .bio-text h2 em { font-style: italic; color: var(--gold); }
+
+    .bio-text p {
+      color: var(--light);
+      font-size: 17px;
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+
+    .bio-highlights {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .highlight {
+      padding: 20px 24px;
+      background: rgba(201,168,76,0.05);
+      border-left: 2px solid var(--gold);
+    }
+
+    .highlight-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .highlight-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+    }
+
+    /* ── LIVE ── */
+    #live {
+      background: var(--deep);
+    }
+
+    .venues-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+    }
+
+    .venue {
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .venue:hover {
+      background: var(--gold-dim);
+      border-color: var(--gold-line);
+    }
+
+    .venue-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+
+    .venue-detail {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .venue-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black);
+      text-align: center;
+      padding: 140px 60px;
+    }
+
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 72px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .contact-title em { font-style: italic; color: var(--gold); }
+
+    .contact-sub {
+      font-size: 16px;
+      color: var(--gray);
+      margin-bottom: 56px;
+      font-style: italic;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant SC', serif;
+      font-size: 18px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      text-decoration: none;
+      padding: 20px 48px;
+      border: 1px solid var(--gold-line);
+      transition: all 0.3s;
+      margin-bottom: 64px;
+    }
+
+    .contact-email:hover {
+      background: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      font-family: 'Cormorant SC', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'Cormorant SC', serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      #hero { padding: 0 24px 60px; }
+      #album { grid-template-columns: 1fr; gap: 48px; }
+      .tracks-grid { grid-template-columns: 1fr; }
+      .track-item:nth-child(odd) { border-right: none; }
+      #bio { grid-template-columns: 1fr; gap: 48px; }
+      .bio-photo { position: static; }
+      .venues-list { grid-template-columns: 1fr; }
+      .bio-highlights { grid-template-columns: 1fr; }
+      .hero-title { font-size: 56px; }
+      .contact-title { font-size: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-name">Alex Brachet</a>
+    <ul class="nav-links">
+      <li><a href="#album">Beyond Blue</a></li>
+      <li><a href="#bio">Biography</a></li>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-line"></div>
+    <div class="hero-content">
+      <p class="hero-label">Pianist &amp; Composer — Marseille, France</p>
+      <h1 class="hero-title">Alex<br><em>Brachet</em></h1>
+      <p class="hero-subtitle">Classical virtuosity. Jazz improvisation.<br>A singular voice at the crossroads of tradition and invention.</p>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ALBUM -->
+  <section id="album">
+    <div class="album-cover reveal">
+      <!-- Remplace ce placeholder par ta pochette : <img src="beyond-blue-cover.jpg" alt="Beyond Blue"> -->
+      <div style="aspect-ratio:1; background: linear-gradient(160deg, #0d1520 0%, #1a2535 40%, #0a0f18 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; box-shadow: 0 40px 120px rgba(0,0,0,0.8);">
+        <div style="font-family:'Cormorant SC',serif; font-size:11px; letter-spacing:0.3em; color:rgba(201,168,76,0.7); margin-bottom:12px;">ALEX BRACHET</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:#f0ede8; line-height:1;">Beyond<br><em style="color:#c9a84c;">Blue</em></div>
+        <div style="margin-top:20px; width:40px; height:1px; background:#c9a84c; opacity:0.5;"></div>
+      </div>
+    </div>
+    <div class="album-info reveal">
+      <div class="section-label">New Album</div>
+      <div class="album-title">Beyond Blue</div>
+      <div class="album-subtitle">Solo Piano · Contemporary Jazz · 2026</div>
+      <p class="album-desc">Nine jazz compositions entirely reimagined — reharmonised, reconstructed, rebuilt from within. Each piece carries its own atmosphere, its own narrative arc. The album is both an intimate diary and a tribute to the jazz tradition.</p>
+
+      <div class="listen-title">Private Listening</div>
+      <div class="listen-links">
+        <a class="listen-link" href="https://soundcloud.com/alex-brachet/memories-of-you-eubie-blake/s-6pWvQOrzBnD" target="_blank">
+          <span class="track-num">I</span>
+          <span>Memories of You</span>
+          <span class="track-composer">Eubie Blake</span>
+        </a>
+        <a class="listen-link" href="https://soundcloud.com/alex-brachet/moon-and-sand-wilder-engvick/s-GnElsZfvo5d" target="_blank">
+          <span class="track-num">VIII</span>
+          <span>Moon and Sand</span>
+          <span class="track-composer">Wilder / Engvick</span>
+        </a>
+        <a class="listen-link" href="https://soundcloud.com/alex-brachet/little-bs-poem-bobby/s-RIRZkzF0RRl" target="_blank">
+          <span class="track-num">IV</span>
+          <span>Little B's Poem</span>
+          <span class="track-composer">Bobby Hutcherson</span>
+        </a>
+      </div>
+
+      <div class="stream-links">
+        <a class="stream-btn" href="https://open.spotify.com/intl-fr/artist/04QU7BOb4BFS7cENR0l4HL" target="_blank">Spotify</a>
+        <a class="stream-btn" href="https://music.apple.com/fr/artist/alex-brachet/301372038?l=en-GB" target="_blank">Apple Music</a>
+        <a class="stream-btn" href="https://www.qobuz.com/fr-fr/interpreter/alex-brachet/" target="_blank">Qobuz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKLIST -->
+  <section id="tracklist">
+    <div class="section-label">Tracklist</div>
+    <div class="tracks-grid reveal">
+      <div class="track-item"><span class="track-n">01</span><span class="track-name">Memories of You</span><span class="track-by">Eubie Blake</span><span class="track-dur">3:52</span></div>
+      <div class="track-item"><span class="track-n">02</span><span class="track-name">Prince of Darkness</span><span class="track-by">Wayne Shorter</span><span class="track-dur">5:13</span></div>
+      <div class="track-item"><span class="track-n">03</span><span class="track-name">Black Narcissus</span><span class="track-by">Joe Henderson</span><span class="track-dur">4:45</span></div>
+      <div class="track-item"><span class="track-n">04</span><span class="track-name">Little B's Poem</span><span class="track-by">Bobby Hutcherson</span><span class="track-dur">5:16</span></div>
+      <div class="track-item"><span class="track-n">05</span><span class="track-name">Fee-Fi-Fo-Fum</span><span class="track-by">Wayne Shorter</span><span class="track-dur">5:06</span></div>
+      <div class="track-item"><span class="track-n">06</span><span class="track-name">Little Waltz</span><span class="track-by">Ron Carter</span><span class="track-dur">5:03</span></div>
+      <div class="track-item"><span class="track-n">07</span><span class="track-name">Jinrikisha</span><span class="track-by">Joe Henderson</span><span class="track-dur">4:44</span></div>
+      <div class="track-item"><span class="track-n">08</span><span class="track-name">Moon and Sand</span><span class="track-by">Wilder / Engvick</span><span class="track-dur">6:17</span></div>
+      <div class="track-item"><span class="track-n">09</span><span class="track-name">Weaver of Dreams</span><span class="track-by">Young / Elliott</span><span class="track-dur">6:20</span></div>
+    </div>
+    <p class="tracklist-total">Total running time — 46:40 · Steinway B Hamburg · Engineered by Robert Collado</p>
+  </section>
+
+  <!-- BIO -->
+  <section id="bio">
+    <div class="bio-photo reveal">
+      <!-- Remplace par ta photo : <img src="alex-brachet-portrait.jpg" alt="Alex Brachet"> -->
+      <div style="aspect-ratio:3/4; background: linear-gradient(160deg, #1a1a22, #0d0d14); display:flex; align-items:center; justify-content:center;">
+        <span style="font-family:'Cormorant SC',serif; font-size:11px; letter-spacing:0.2em; color:#555;">Photo</span>
+      </div>
+      <p class="bio-photo-caption">Alex Brachet · Marseille</p>
+    </div>
+    <div class="bio-text reveal">
+      <div class="section-label">Biography</div>
+      <h2>A voice <em>between two worlds</em></h2>
+      <p>Alex Brachet is a French pianist, guitarist and composer whose artistic identity bridges the grand Romantic tradition and the language of contemporary jazz improvisation. Trained by Pierre Pradier — a direct student of Georges Cziffra — and later by the legendary Russian pianist Evgueny Moguilevski, he carries a lineage of virtuosity and expressive intensity that is rare in the jazz world.</p>
+      <p>His classical credentials are exceptional: Gold Medal in Piano, Chamber Music and Solfège at the Conservatoire National de Région Pierre Barbizet in Marseille, where he also holds the DEM — the highest French professional qualification. His studies in film music composition earned him a First Prize with Highest Distinction, awarded unanimously with jury congratulations.</p>
+      <p>On stage, Brachet has performed at the Théâtre de la Criée, the Conservatoire Barbizet, and across Marseille's most prestigious jazz venues. In 2024, he opened the internationally renowned <em>Marseille Jazz des Cinq Continents</em> festival at the Théâtre de la Joliette before nearly 500 people. He has collaborated on multiple occasions with saxophonist Raphaël Imbert (Victoire de la Musique).</p>
+      <p>As a guitarist, he was a finalist in the Guitar Idol UK and Native Instruments competitions, and opened for the Tony MacAlpine / Billy Sheehan / Virgil Donati French tour. In 2025, he served as lead composer for the short film <em>Sing Sing</em>, selected for the MCM 2025 festival in Marseille.</p>
+
+      <div class="bio-highlights">
+        <div class="highlight">
+          <div class="highlight-value">2024</div>
+          <div class="highlight-label">Marseille Jazz des 5 Continents</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-value">Gold</div>
+          <div class="highlight-label">Medal — Piano, CNR Marseille</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-value">DEM</div>
+          <div class="highlight-label">Diplôme d'Études Musicales</div>
+        </div>
+        <div class="highlight">
+          <div class="highlight-value">15+</div>
+          <div class="highlight-label">Releases on major platforms</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE -->
+  <section id="live">
+    <div class="section-label">Selected Venues &amp; Collaborations</div>
+    <div class="venues-list reveal">
+      <div class="venue">
+        <div class="venue-name">Théâtre de la Joliette</div>
+        <div class="venue-detail">Marseille Jazz des 5 Continents · 2024</div>
+        <div class="venue-desc">Opening of the internationally renowned festival. Trio format. Nearly 500 in attendance.</div>
+      </div>
+      <div class="venue">
+        <div class="venue-name">Théâtre de la Criée</div>
+        <div class="venue-detail">Marseille · Solo Classical Recital</div>
+        <div class="venue-desc">Solo piano recital including Chopin's Andante Spianato and Grande Polonaise Brillante Op. 22.</div>
+      </div>
+      <div class="venue">
+        <div class="venue-name">Raphaël Imbert</div>
+        <div class="venue-detail">Saxophone · Victoire de la Musique</div>
+        <div class="venue-desc">Multiple quartet performances including Festival de la Citadelle and 5-star hotel concerts.</div>
+      </div>
+      <div class="venue">
+        <div class="venue-name">Hôtel C2</div>
+        <div class="venue-detail">5-Star · Marseille · Resident</div>
+        <div class="venue-desc">Regular Wednesday jazz concerts at one of Marseille's most prestigious addresses.</div>
+      </div>
+      <div class="venue">
+        <div class="venue-name">Conservatoire Barbizet</div>
+        <div class="venue-detail">CNR Marseille · Classical Recitals</div>
+        <div class="venue-desc">Classical recitals at the Conservatoire National de Région Pierre Barbizet.</div>
+      </div>
+      <div class="venue">
+        <div class="venue-name">Zoomai · Club 27</div>
+        <div class="venue-detail">Marseille · Regular Performances</div>
+        <div class="venue-desc">Twice-monthly jazz performances across Marseille's finest contemporary jazz venues.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2 class="contact-title">Get in <em>touch</em></h2>
+    <p class="contact-sub">For bookings, press enquiries, and label submissions</p>
+    <a class="contact-email" href="mailto:contact@alexbrachet.com">contact@alexbrachet.com</a>
+    <div class="social-links">
+      <a class="social-link" href="https://www.instagram.com/alexbrachetmusic/" target="_blank">Instagram</a>
+      <a class="social-link" href="https://www.youtube.com/channel/UCIEGutSz6kOc_qgJ-5-i90Q" target="_blank">YouTube</a>
+      <a class="social-link" href="https://open.spotify.com/intl-fr/artist/04QU7BOb4BFS7cENR0l4HL" target="_blank">Spotify</a>
+      <a class="social-link" href="https://music.apple.com/fr/artist/alex-brachet/301372038?l=en-GB" target="_blank">Apple Music</a>
+      <a class="social-link" href="https://www.facebook.com/Alexrobertbrachet/" target="_blank">Facebook</a>
+      <a class="social-link" href="https://www.tiktok.com/@alexbrachetmusic" target="_blank">TikTok</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Alex Brachet</span>
+    <span>Marseille, France</span>
+    <span>contact@alexbrachet.com</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav opacity on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.style.background = 'rgba(10,10,10,0.97)';
+        nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+      } else {
+        nav.style.background = 'linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%)';
+        nav.style.borderBottom = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
