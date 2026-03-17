@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alex Brachet — Pianist & Composer</title>
-  <meta name="description" content="Alex Brachet — French pianist and composer. Solo piano album Beyond Blue. Jazz, classical, contemporary."/>
+  <title>Alex Brachet â€” Pianist & Composer</title>
+  <meta name="description" content="Alex Brachet â€” French pianist and composer. Jazz, classical, contemporary."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant+SC:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
+    /* â”€â”€ NOISE OVERLAY â”€â”€ */
     body::before {
       content: '';
       position: fixed;
@@ -46,7 +46,7 @@
       opacity: 0.4;
     }
 
-    /* ── NAV ── */
+    /* â”€â”€ NAV â”€â”€ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -86,7 +86,7 @@
 
     .nav-links a:hover { color: var(--gold); }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -184,7 +184,7 @@
       animation: scrollPulse 2s ease-in-out infinite;
     }
 
-    /* ── SECTION BASE ── */
+    /* â”€â”€ SECTION BASE â”€â”€ */
     section {
       padding: 120px 60px;
       position: relative;
@@ -209,202 +209,7 @@
       max-width: 120px;
     }
 
-    /* ── ALBUM ── */
-    #album {
-      background: var(--deep);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .album-cover {
-      position: relative;
-    }
-
-    .album-cover img {
-      width: 100%;
-      display: block;
-      box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(201,168,76,0.1);
-    }
-
-    .album-cover::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(135deg, rgba(201,168,76,0.2), transparent 50%);
-      pointer-events: none;
-    }
-
-    .album-info {}
-
-    .album-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: 56px;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-
-    .album-subtitle {
-      font-family: 'Cormorant SC', serif;
-      font-size: 12px;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      margin-bottom: 32px;
-    }
-
-    .album-desc {
-      color: var(--light);
-      font-size: 17px;
-      line-height: 1.8;
-      margin-bottom: 48px;
-      font-style: italic;
-    }
-
-    .listen-title {
-      font-family: 'Cormorant SC', serif;
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: var(--gray);
-      margin-bottom: 20px;
-    }
-
-    .listen-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-
-    .listen-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      color: var(--light);
-      text-decoration: none;
-      font-size: 15px;
-      padding: 14px 20px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .listen-link::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: var(--gold);
-      transform: scaleY(0);
-      transition: transform 0.3s;
-    }
-
-    .listen-link:hover {
-      border-color: var(--gold-line);
-      color: var(--white);
-      background: var(--gold-dim);
-    }
-
-    .listen-link:hover::before { transform: scaleY(1); }
-
-    .listen-link .track-num {
-      font-family: 'Cormorant SC', serif;
-      font-size: 11px;
-      color: var(--gold);
-      min-width: 20px;
-    }
-
-    .listen-link .track-composer {
-      margin-left: auto;
-      font-size: 13px;
-      color: var(--gray);
-      font-style: italic;
-    }
-
-    .stream-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .stream-btn {
-      font-family: 'Cormorant SC', serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      color: var(--gray);
-      text-decoration: none;
-      padding: 10px 20px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-    }
-
-    .stream-btn:hover {
-      color: var(--gold);
-      border-color: var(--gold-line);
-    }
-
-    /* ── TRACKLIST ── */
-    #tracklist {
-      background: var(--black);
-    }
-
-    .tracks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--border);
-    }
-
-    .track-item {
-      display: flex;
-      align-items: baseline;
-      gap: 20px;
-      padding: 22px 30px;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-
-    .track-item:nth-child(odd) { border-right: 1px solid var(--border); }
-    .track-item:hover { background: rgba(201,168,76,0.04); }
-
-    .track-n {
-      font-family: 'Cormorant SC', serif;
-      font-size: 11px;
-      color: var(--gold);
-      min-width: 24px;
-    }
-
-    .track-name {
-      font-size: 16px;
-      font-style: italic;
-      flex: 1;
-    }
-
-    .track-by {
-      font-size: 13px;
-      color: var(--gray);
-    }
-
-    .track-dur {
-      font-family: 'Cormorant SC', serif;
-      font-size: 12px;
-      color: var(--gray);
-      letter-spacing: 0.1em;
-    }
-
-    .tracklist-total {
-      text-align: right;
-      margin-top: 24px;
-      font-family: 'Cormorant SC', serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      color: var(--gray);
-    }
-
-    /* ── BIO ── */
+    /* â”€â”€ BIO â”€â”€ */
     #bio {
       background: var(--panel);
       display: grid;
@@ -481,7 +286,7 @@
       color: var(--gray);
     }
 
-    /* ── LIVE ── */
+    /* â”€â”€ LIVE â”€â”€ */
     #live {
       background: var(--deep);
     }
@@ -526,7 +331,7 @@
       line-height: 1.6;
     }
 
-    /* ── CONTACT ── */
+    /* â”€â”€ CONTACT â”€â”€ */
     #contact {
       background: var(--black);
       text-align: center;
@@ -587,7 +392,7 @@
 
     .social-link:hover { color: var(--gold); }
 
-    /* ── FOOTER ── */
+    /* â”€â”€ FOOTER â”€â”€ */
     footer {
       padding: 32px 60px;
       border-top: 1px solid var(--border);
@@ -603,7 +408,7 @@
       color: var(--gray);
     }
 
-    /* ── ANIMATIONS ── */
+    /* â”€â”€ ANIMATIONS â”€â”€ */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -630,14 +435,12 @@
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
+    /* â”€â”€ RESPONSIVE â”€â”€ */
     @media (max-width: 900px) {
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
       section { padding: 80px 24px; }
       #hero { padding: 0 24px 60px; }
-      #album { grid-template-columns: 1fr; gap: 48px; }
-      .tracks-grid { grid-template-columns: 1fr; }
       .track-item:nth-child(odd) { border-right: none; }
       #bio { grid-template-columns: 1fr; gap: 48px; }
       .bio-photo { position: static; }
@@ -654,7 +457,7 @@
   <nav>
     <a href="#hero" class="nav-name">Alex Brachet</a>
     <ul class="nav-links">
-      <li><a href="#album">Beyond Blue</a></li>
+      <li><a href="#bio">Biography</a></li>
       <li><a href="#bio">Biography</a></li>
       <li><a href="#live">Live</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -666,7 +469,7 @@
     <div class="hero-bg"></div>
     <div class="hero-line"></div>
     <div class="hero-content">
-      <p class="hero-label">Pianist &amp; Composer — Marseille, France</p>
+      <p class="hero-label">Pianist &amp; Composer â€” Marseille, France</p>
       <h1 class="hero-title">Alex<br><em>Brachet</em></h1>
       <p class="hero-subtitle">Classical virtuosity. Jazz improvisation.<br>A singular voice at the crossroads of tradition and invention.</p>
     </div>
@@ -676,64 +479,16 @@
     </div>
   </section>
 
-  <!-- ALBUM -->
-  <section id="album">
-    <div class="album-cover reveal">
-      <!-- Remplace ce placeholder par ta pochette : <img src="beyond-blue-cover.jpg" alt="Beyond Blue"> -->
-      <div style="aspect-ratio:1; background: linear-gradient(160deg, #0d1520 0%, #1a2535 40%, #0a0f18 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:40px; box-shadow: 0 40px 120px rgba(0,0,0,0.8);">
-        <div style="font-family:'Cormorant SC',serif; font-size:11px; letter-spacing:0.3em; color:rgba(201,168,76,0.7); margin-bottom:12px;">ALEX BRACHET</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:#f0ede8; line-height:1;">Beyond<br><em style="color:#c9a84c;">Blue</em></div>
-        <div style="margin-top:20px; width:40px; height:1px; background:#c9a84c; opacity:0.5;"></div>
-      </div>
+  <!-- STREAMING -->
+  <section id="streaming" style="background: var(--deep); text-align:center; padding: 100px 60px;">
+    <div class="section-label" style="justify-content:center;">Music</div>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:52px; line-height:1; letter-spacing:-0.02em; margin-bottom:16px;">Listen on all platforms</h2>
+    <p style="font-size:16px; color:var(--gray); font-style:italic; margin-bottom:48px;">Available on Spotify, Apple Music, Qobuz and more</p>
+    <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+      <a class="stream-btn" href="https://open.spotify.com/intl-fr/artist/04QU7BOb4BFS7cENR0l4HL" target="_blank">Spotify</a>
+      <a class="stream-btn" href="https://music.apple.com/fr/artist/alex-brachet/301372038?l=en-GB" target="_blank">Apple Music</a>
+      <a class="stream-btn" href="https://www.qobuz.com/fr-fr/interpreter/alex-brachet/" target="_blank">Qobuz</a>
     </div>
-    <div class="album-info reveal">
-      <div class="section-label">New Album</div>
-      <div class="album-title">Beyond Blue</div>
-      <div class="album-subtitle">Solo Piano · Contemporary Jazz · 2026</div>
-      <p class="album-desc">Nine jazz compositions entirely reimagined — reharmonised, reconstructed, rebuilt from within. Each piece carries its own atmosphere, its own narrative arc. The album is both an intimate diary and a tribute to the jazz tradition.</p>
-
-      <div class="listen-title">Private Listening</div>
-      <div class="listen-links">
-        <a class="listen-link" href="https://soundcloud.com/alex-brachet/memories-of-you-eubie-blake/s-6pWvQOrzBnD" target="_blank">
-          <span class="track-num">I</span>
-          <span>Memories of You</span>
-          <span class="track-composer">Eubie Blake</span>
-        </a>
-        <a class="listen-link" href="https://soundcloud.com/alex-brachet/moon-and-sand-wilder-engvick/s-GnElsZfvo5d" target="_blank">
-          <span class="track-num">VIII</span>
-          <span>Moon and Sand</span>
-          <span class="track-composer">Wilder / Engvick</span>
-        </a>
-        <a class="listen-link" href="https://soundcloud.com/alex-brachet/little-bs-poem-bobby/s-RIRZkzF0RRl" target="_blank">
-          <span class="track-num">IV</span>
-          <span>Little B's Poem</span>
-          <span class="track-composer">Bobby Hutcherson</span>
-        </a>
-      </div>
-
-      <div class="stream-links">
-        <a class="stream-btn" href="https://open.spotify.com/intl-fr/artist/04QU7BOb4BFS7cENR0l4HL" target="_blank">Spotify</a>
-        <a class="stream-btn" href="https://music.apple.com/fr/artist/alex-brachet/301372038?l=en-GB" target="_blank">Apple Music</a>
-        <a class="stream-btn" href="https://www.qobuz.com/fr-fr/interpreter/alex-brachet/" target="_blank">Qobuz</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRACKLIST -->
-  <section id="tracklist">
-    <div class="section-label">Tracklist</div>
-    <div class="tracks-grid reveal">
-      <div class="track-item"><span class="track-n">01</span><span class="track-name">Memories of You</span><span class="track-by">Eubie Blake</span><span class="track-dur">3:52</span></div>
-      <div class="track-item"><span class="track-n">02</span><span class="track-name">Prince of Darkness</span><span class="track-by">Wayne Shorter</span><span class="track-dur">5:13</span></div>
-      <div class="track-item"><span class="track-n">03</span><span class="track-name">Black Narcissus</span><span class="track-by">Joe Henderson</span><span class="track-dur">4:45</span></div>
-      <div class="track-item"><span class="track-n">04</span><span class="track-name">Little B's Poem</span><span class="track-by">Bobby Hutcherson</span><span class="track-dur">5:16</span></div>
-      <div class="track-item"><span class="track-n">05</span><span class="track-name">Fee-Fi-Fo-Fum</span><span class="track-by">Wayne Shorter</span><span class="track-dur">5:06</span></div>
-      <div class="track-item"><span class="track-n">06</span><span class="track-name">Little Waltz</span><span class="track-by">Ron Carter</span><span class="track-dur">5:03</span></div>
-      <div class="track-item"><span class="track-n">07</span><span class="track-name">Jinrikisha</span><span class="track-by">Joe Henderson</span><span class="track-dur">4:44</span></div>
-      <div class="track-item"><span class="track-n">08</span><span class="track-name">Moon and Sand</span><span class="track-by">Wilder / Engvick</span><span class="track-dur">6:17</span></div>
-      <div class="track-item"><span class="track-n">09</span><span class="track-name">Weaver of Dreams</span><span class="track-by">Young / Elliott</span><span class="track-dur">6:20</span></div>
-    </div>
-    <p class="tracklist-total">Total running time — 46:40 · Steinway B Hamburg · Engineered by Robert Collado</p>
   </section>
 
   <!-- BIO -->
@@ -743,14 +498,14 @@
       <div style="aspect-ratio:3/4; background: linear-gradient(160deg, #1a1a22, #0d0d14); display:flex; align-items:center; justify-content:center;">
         <span style="font-family:'Cormorant SC',serif; font-size:11px; letter-spacing:0.2em; color:#555;">Photo</span>
       </div>
-      <p class="bio-photo-caption">Alex Brachet · Marseille</p>
+      <p class="bio-photo-caption">Alex Brachet Â· Marseille</p>
     </div>
     <div class="bio-text reveal">
       <div class="section-label">Biography</div>
       <h2>A voice <em>between two worlds</em></h2>
-      <p>Alex Brachet is a French pianist, guitarist and composer whose artistic identity bridges the grand Romantic tradition and the language of contemporary jazz improvisation. Trained by Pierre Pradier — a direct student of Georges Cziffra — and later by the legendary Russian pianist Evgueny Moguilevski, he carries a lineage of virtuosity and expressive intensity that is rare in the jazz world.</p>
-      <p>His classical credentials are exceptional: Gold Medal in Piano, Chamber Music and Solfège at the Conservatoire National de Région Pierre Barbizet in Marseille, where he also holds the DEM — the highest French professional qualification. His studies in film music composition earned him a First Prize with Highest Distinction, awarded unanimously with jury congratulations.</p>
-      <p>On stage, Brachet has performed at the Théâtre de la Criée, the Conservatoire Barbizet, and across Marseille's most prestigious jazz venues. In 2024, he opened the internationally renowned <em>Marseille Jazz des Cinq Continents</em> festival at the Théâtre de la Joliette before nearly 500 people. He has collaborated on multiple occasions with saxophonist Raphaël Imbert (Victoire de la Musique).</p>
+      <p>Alex Brachet is a French pianist, guitarist and composer whose artistic identity bridges the grand Romantic tradition and the language of contemporary jazz improvisation. Trained by Pierre Pradier â€” a direct student of Georges Cziffra â€” and later by the legendary Russian pianist Evgueny Moguilevski, he carries a lineage of virtuosity and expressive intensity that is rare in the jazz world.</p>
+      <p>His classical credentials are exceptional: Gold Medal in Piano, Chamber Music and SolfÃ¨ge at the Conservatoire National de RÃ©gion Pierre Barbizet in Marseille, where he also holds the DEM â€” the highest French professional qualification. His studies in film music composition earned him a First Prize with Highest Distinction, awarded unanimously with jury congratulations.</p>
+      <p>On stage, Brachet has performed at the ThÃ©Ã¢tre de la CriÃ©e, the Conservatoire Barbizet, and across Marseille's most prestigious jazz venues. In 2024, he opened the internationally renowned <em>Marseille Jazz des Cinq Continents</em> festival at the ThÃ©Ã¢tre de la Joliette before nearly 500 people. He has collaborated on multiple occasions with saxophonist RaphaÃ«l Imbert (Victoire de la Musique).</p>
       <p>As a guitarist, he was a finalist in the Guitar Idol UK and Native Instruments competitions, and opened for the Tony MacAlpine / Billy Sheehan / Virgil Donati French tour. In 2025, he served as lead composer for the short film <em>Sing Sing</em>, selected for the MCM 2025 festival in Marseille.</p>
 
       <div class="bio-highlights">
@@ -760,11 +515,11 @@
         </div>
         <div class="highlight">
           <div class="highlight-value">Gold</div>
-          <div class="highlight-label">Medal — Piano, CNR Marseille</div>
+          <div class="highlight-label">Medal â€” Piano, CNR Marseille</div>
         </div>
         <div class="highlight">
           <div class="highlight-value">DEM</div>
-          <div class="highlight-label">Diplôme d'Études Musicales</div>
+          <div class="highlight-label">DiplÃ´me d'Ã‰tudes Musicales</div>
         </div>
         <div class="highlight">
           <div class="highlight-value">15+</div>
@@ -779,33 +534,33 @@
     <div class="section-label">Selected Venues &amp; Collaborations</div>
     <div class="venues-list reveal">
       <div class="venue">
-        <div class="venue-name">Théâtre de la Joliette</div>
-        <div class="venue-detail">Marseille Jazz des 5 Continents · 2024</div>
+        <div class="venue-name">ThÃ©Ã¢tre de la Joliette</div>
+        <div class="venue-detail">Marseille Jazz des 5 Continents Â· 2024</div>
         <div class="venue-desc">Opening of the internationally renowned festival. Trio format. Nearly 500 in attendance.</div>
       </div>
       <div class="venue">
-        <div class="venue-name">Théâtre de la Criée</div>
-        <div class="venue-detail">Marseille · Solo Classical Recital</div>
+        <div class="venue-name">ThÃ©Ã¢tre de la CriÃ©e</div>
+        <div class="venue-detail">Marseille Â· Solo Classical Recital</div>
         <div class="venue-desc">Solo piano recital including Chopin's Andante Spianato and Grande Polonaise Brillante Op. 22.</div>
       </div>
       <div class="venue">
-        <div class="venue-name">Raphaël Imbert</div>
-        <div class="venue-detail">Saxophone · Victoire de la Musique</div>
+        <div class="venue-name">RaphaÃ«l Imbert</div>
+        <div class="venue-detail">Saxophone Â· Victoire de la Musique</div>
         <div class="venue-desc">Multiple quartet performances including Festival de la Citadelle and 5-star hotel concerts.</div>
       </div>
       <div class="venue">
-        <div class="venue-name">Hôtel C2</div>
-        <div class="venue-detail">5-Star · Marseille · Resident</div>
+        <div class="venue-name">HÃ´tel C2</div>
+        <div class="venue-detail">5-Star Â· Marseille Â· Resident</div>
         <div class="venue-desc">Regular Wednesday jazz concerts at one of Marseille's most prestigious addresses.</div>
       </div>
       <div class="venue">
         <div class="venue-name">Conservatoire Barbizet</div>
-        <div class="venue-detail">CNR Marseille · Classical Recitals</div>
-        <div class="venue-desc">Classical recitals at the Conservatoire National de Région Pierre Barbizet.</div>
+        <div class="venue-detail">CNR Marseille Â· Classical Recitals</div>
+        <div class="venue-desc">Classical recitals at the Conservatoire National de RÃ©gion Pierre Barbizet.</div>
       </div>
       <div class="venue">
-        <div class="venue-name">Zoomai · Club 27</div>
-        <div class="venue-detail">Marseille · Regular Performances</div>
+        <div class="venue-name">Zoomai Â· Club 27</div>
+        <div class="venue-detail">Marseille Â· Regular Performances</div>
         <div class="venue-desc">Twice-monthly jazz performances across Marseille's finest contemporary jazz venues.</div>
       </div>
     </div>
@@ -816,7 +571,7 @@
     <div class="section-label" style="justify-content:center;">Contact</div>
     <h2 class="contact-title">Get in <em>touch</em></h2>
     <p class="contact-sub">For bookings, press enquiries, and label submissions</p>
-    <a class="contact-email" href="mailto:contact@alexbrachet.com">contact@alexbrachet.com</a>
+    <a class="contact-email" href="/cdn-cgi/l/email-protection#066569687267657246676a637e647467656e63722865696b"><span class="__cf_email__" data-cfemail="aecdc1c0dacfcddaeecfc2cbd6ccdccfcdc6cbda80cdc1c3">[email&#160;protected]</span></a>
     <div class="social-links">
       <a class="social-link" href="https://www.instagram.com/alexbrachetmusic/" target="_blank">Instagram</a>
       <a class="social-link" href="https://www.youtube.com/channel/UCIEGutSz6kOc_qgJ-5-i90Q" target="_blank">YouTube</a>
@@ -829,12 +584,12 @@
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 Alex Brachet</span>
+    <span>Â© 2026 Alex Brachet</span>
     <span>Marseille, France</span>
-    <span>contact@alexbrachet.com</span>
+    <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfbcb0b1abbebcab9fbeb3baa7bdadbebcb7baabf1bcb0b2">[email&#160;protected]</a></span>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -848,15 +603,4 @@
 
     // Nav opacity on scroll
     const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) {
-        nav.style.background = 'rgba(10,10,10,0.97)';
-        nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-      } else {
-        nav.style.background = 'linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%)';
-        nav.style.borderBottom = 'none';
-      }
-    });
-  </script>
-</body>
-</html>
+    window.addEventListener(
